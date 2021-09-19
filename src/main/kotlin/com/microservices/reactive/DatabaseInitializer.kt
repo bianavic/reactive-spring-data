@@ -14,15 +14,17 @@ class DatabaseInitializer {
     @Autowired
     lateinit var mongoOperations: ReactiveMongoOperations
 
+    companion object {
+        val initialCustomers = listOf(Customer(1, "Chris"),
+            Customer(2, "Donna"),
+            Customer(3, "John", Customer.Telephone("+44", "444444444")))
+
+    }
+
     @PostConstruct
     fun initData() {
-        mongoOperations.collectionExists("Customers").subscribe {
-            if (it != true) mongoOperations.createCollection("Customers").subscribe {
-                println("Customers collections created")
-            } else println("Customers collections already exist")
-            customerRepository.save(Customer(1, "Chris")).subscribe {
-                println("Default customers created")
-            }
+        customerRepository.saveAll(initialCustomers).subscribe {
+            println("Default customers created")
         }
     }
 }
