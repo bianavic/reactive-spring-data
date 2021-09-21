@@ -7,7 +7,7 @@ Learn how we can use Spring Data to persist the model of our microservices react
 ### book
 Hands On Microservices with Kotlin
 
-- chapter 6  Reactive Spring Data
+- chapter 5  Reactive Spring Data
 
 ### tools
 
